@@ -1,0 +1,12 @@
+PRGNAM="MEGAcmd"
+VERSION="1.4.0_Linux"
+HOMEPAGE="https://github.com/meganz/MEGAcmd"
+DOWNLOAD="https://github.com/meganz/MEGAcmd/archive/1.4.0_Linux.tar.gz \
+	 https://github.com/meganz/sdk/archive/2337aca38daaca6deedd04d8ea400293503f00ff.tar.gz"
+MD5SUM="7d0aab9ccc812942f374da1efe3d3469 \
+	bf0590f0ce690d9ec74d70c137e1e3de"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES="FreeImage"
+MAINTAINER="jw-shin1abe"
+EMAIL="shin1.abe@nifty.com"
