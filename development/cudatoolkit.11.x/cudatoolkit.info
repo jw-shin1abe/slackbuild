@@ -7,4 +7,5 @@ DOWNLOAD_x86_64="https://developer.download.nvidia.com/compute/cuda/11.6.0/local
 MD5SUM_x86_64="685ef40564b829eb8e6892563e9d8b80"
 REQUIRES="nvidia-driver jdk"
 MAINTAINER="Giorgio Peron"
-EMAIL="giorgio.peron@gmail.com"
+#EMAIL="giorgio.peron@gmail.com" ; original creator
+EMAIL="shin1.abe@nifty.com" ; edited based on original script
