@@ -76,7 +76,7 @@ sh $CWD/$FILENAME\_$VERSION\_$DRIVER\_linux.run --target $PRGNAM-$VERSION --noex
 # cd $PRGNAM-$VERSION
 # Fix up samples that use findgllib_mk
 # for f in builds/cuda_samples/*/*/findgllib.mk; do
-#   patch $f cuda-findgllib_mk.diff
+#   patch -p1 $f < $CWD/cuda-findgllib_mk.diff
 # done
 
 cd $PRGNAM-$VERSION/builds
