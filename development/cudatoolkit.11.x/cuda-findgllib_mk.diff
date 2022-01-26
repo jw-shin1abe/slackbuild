@@ -14,8 +14,8 @@
        DFLT_PATH ?= /usr/lib64
 +    endif
 +    ifeq ("$(SLACK)","0")
-+      GLPATH    ?= /usr/lib64/nvidia
-+      GLLINK    ?= -L/usr/lib64/nvidia
++      GLPATH    ?= /usr/lib64
++      GLLINK    ?= -L/usr/lib64
 +      DFLT_PATH ?= /usr/lib64
      endif
    
