@@ -25,7 +25,6 @@
 
 PRGNAM=MEGAcmd
 VERSION=${VERSION:-1.5.0}
-#SDK=${SDK:-2337aca38daaca6deedd04d8ea400293503f00ff}
 SDK=${SDK:-3.9.11b}
 BUILD=${BUILD:-1} # 1jw : use stable source 1.5.0_Linux build against ffmpeg-4.4.x, Add README.md(Usage examples) and UserGuide.md
 TAG=${TAG:-jw}
