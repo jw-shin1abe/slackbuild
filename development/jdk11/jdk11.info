@@ -7,4 +7,4 @@ DOWNLOAD_x86_64="https://download.macromedia.com/pub/coldfusion/java/java11/1114
 MD5SUM_x86_64="c2037b5f2e2a6ddcfbdfe1489bccfd63"
 REQUIRES=""
 MAINTAINER="Igor Alexandrov"
-EMAIL="igor.alexandrov@outlook.com"
+EMAIL="igor.alexandrov@outlook.com" 
