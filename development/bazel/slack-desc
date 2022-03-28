@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+     |-----handy-ruler------------------------------------------------------|
+bazel: Bazel is a build and test tool similar to Make, Maven, and Gradle.
+bazel:
+bazel: It uses a human-readable, high-level build language.
+bazel:
+bazel: Bazel supports projects in multiple languages and builds outputs
+bazel: for multiple platforms.
+bazel:
+bazel: Bazel supports large codebases across multiple repositories, and
+bazel: large numbers of users.
+bazel:
+bazel: URL: https://github.com/bazelbuild/bazel/
