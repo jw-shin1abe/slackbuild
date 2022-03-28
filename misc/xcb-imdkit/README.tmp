@@ -1,0 +1,2 @@
+xcb-imdkit is an implementation of xim protocol in xcb.
+This is required for fcitx5.
