@@ -1,0 +1,221 @@
+#!/bin/sh
+# Slackware build script for fcitx-mozc
+# Issued under The MIT License (MIT)
+#
+# Copyright 2016 Kuro_CODE25
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+PRGNAM=fcitx5-mozc
+VERSION=${VERSION:-2.26.4680.102.1}
+BUILD=${BUILD:-1}
+TAG=${TAG:-jw}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i586 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+BLDBASEDIR=$TMP/$PRGNAM-$VERSION
+
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
+  LIBDIRSUFFIX=""
+elif [ "$ARCH" = "i686" ]; then
+  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
+  LIBDIRSUFFIX=""
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2 -fPIC"
+  LIBDIRSUFFIX="64"
+else
+  SLKCFLAGS="-O2"
+  LIBDIRSUFFIX=""
+fi
+
+set -e
+BLDTYPE=Release
+# source rev. and version.
+ZIPCODE_REL=202110
+ABSEIL_CPP_REV=215105818dfde3174fe799600bb0f3cae233d0bf
+BREAKPAD_REV=216cea7bca53fa441a3ee0d0f5fd339a3a894224
+GOOGLETEST_REV=703bd9caab50b139428cea1aaff9974ebee5742e
+JSONCPP_REV=9059f5cad030ba11d37818847443a53918c327b1
+PROTOBUF_REV=cc7b1b53234cd7a8f50d90ac3933b240dcf4cd97
+GYP_REV=caa60026e223fc501e8b337fd5086ece4028b1c6
+JAPANESE_USAGE_DICT_REV=e5b3425575734c323e1d947009dd74709437b684
+MOZC_REV=0b76eb6c1b8119d5aca5e3bc953fb2be18c94f74
+
+# Download sources
+wget https://github.com/chromium/gyp/archive/${GYP_REV}/gyp-${GYP_REV}.zip
+wget https://github.com/fcitx/mozc/archive/${MOZC_REV}/mozc-${MOZC_REV}.zip
+wget https://github.com/hiroyuki-komatsu/japanese-usage-dictionary/archive/${JAPANESE_USAGE_DICT_REV}/japanese-usage-dictionary-${JAPANESE_USAGE_DICT_REV}.zip
+wget https://github.com/protocolbuffers/protobuf/archive/${PROTOBUF_REV}/protobuf-${PROTOBUF_REV}.zip
+wget https://github.com/abseil/abseil-cpp/archive/${ABSEIL_CPP_REV}/abseil-cpp-${ABSEIL_CPP_REV}.zip
+wget https://chromium.googlesource.com/breakpad/breakpad/+archive/${BREAKPAD_REV}.tar.gz
+wget https://github.com/google/googletest/archive/${GOOGLETEST_REV}/googletest-${GOOGLETEST_REV}.zip
+wget https://github.com/open-source-parsers/jsoncpp/archive/${JSONCPP_REV}/jsoncpp-${JSONCPP_REV}.zip
+
+wget https://osdn.net/projects/ponsfoot-aur/storage/mozc/jigyosyo-${ZIPCODE_REL}.zip
+wget https://osdn.net/projects/ponsfoot-aur/storage/mozc/x-ken-all-${ZIPCODE_REL}.zip
+wget https://download.fcitx-im.org/fcitx-mozc/fcitx-mozc-icon.tar.gz
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+mkdir -p $PRGNAM-$VERSION
+cd $PRGNAM-$VERSION
+echo "prepare source file..."
+# unzip packages
+unzip $CWD/x-ken-all-$ZIPCODE_REL.zip
+unzip $CWD/jigyosyo-$ZIPCODE_REL.zip
+unzip $CWD/abseil-cpp-$ABSEIL_CPP_REV.zip
+unzip $CWD/googletest-$GOOGLETEST_REV.zip
+unzip $CWD/jsoncpp-$JSONCPP_REV.zip
+unzip $CWD/mozc-$MOZC_REV.zip
+unzip $CWD/japanese-usage-dictionary-$JAPANESE_USAGE_DICT_REV.zip
+unzip $CWD/gyp-$GYP_REV.zip
+unzip $CWD/protobuf-$PROTOBUF_REV.zip
+# untar breakpad to breakpad directory
+mkdir breakpad
+tar xvf ${CWD}/${BREAKPAD_REV}.tar.gz -C breakpad
+
+# extact tar file
+tar -xvf ${CWD}/fcitx-mozc-icon.tar.gz
+
+# rename directory
+mv mozc-$MOZC_REV mozc
+mv gyp-$GYP_REV gyp
+mv japanese-usage-dictionary-$JAPANESE_USAGE_DICT_REV japanese_usage_dictionary
+mv abseil-cpp-$ABSEIL_CPP_REV abseil-cpp
+mv protobuf-$PROTOBUF_REV protobuf
+#mv breakpad-$BREAKPAD_REV breakpad
+mv googletest-$GOOGLETEST_REV googletest
+mv jsoncpp-$JSONCPP_REV jsoncpp
+
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+cd $BLDBASEDIR/mozc/src
+
+# disable fcitx4 target
+rm unix/fcitx/fcitx.gyp
+
+# disable android-ndk requirement, even if we don't need it bazel will complain
+sed "/android_ndk_repository/d" -i WORKSPACE.bazel
+
+# adjust QT_BASE_PATH
+sed 's|path = QT_BASE_PATH|path = "/usr/include/qt5"|' -i WORKSPACE.bazel
+
+cd $BLDBASEDIR/mozc
+# prepare zip code dictionary
+unzip -d src/data/dictionary_oss $CWD/x-ken-all-$ZIPCODE_REL.zip
+unzip -d src/data/dictionary_oss $CWD/jigyosyo-$ZIPCODE_REL.zip
+
+cd src/dictionary
+# Generate zip code seed
+sed -i "s/from dictionary import zip_code_util/import zip_code_util/g" gen_zip_code_seed.py
+
+cd ../data/dictionary_oss
+echo "Generating zip code seed ..."
+python3 ../../dictionary/gen_zip_code_seed.py --zip_code=x-ken-all.csv --jigyosyo=JIGYOSYO.CSV >> dictionary09.txt
+echo "Done."
+
+# Copy third party deps
+echo "Copy third party deps ..."
+cd $BLDBASEDIR/mozc
+# fix QT_BBASE_PATH QT_BIN_PATH
+patch -p1 < $CWD/01_mozc_config.bzl_qt5.diff
+# fix libdir path of fcitx5-mozc.so for Slackware
+patch -p1 < $CWD/02_install_fcitx5_libdir.diff
+
+cd ..
+for dep in abseil-cpp breakpad googletest jsoncpp gyp protobuf japanese_usage_dictionary
+do
+  cp -a $dep mozc/src/third_party/
+done
+
+# build package
+echo "build package..."
+CFLAGS="${CFLAGS} -fvisibility=hidden"
+CXXFLAGS="${CXXFLAGS} -fvisibility=hidden"
+
+cd $BLDBASEDIR/mozc/src
+QT_BASE_PATH=/usr/include/qt5 bash ../scripts/build_fcitx5_bazel
+
+# Build emacs_helper
+echo "build emacs_helper..."
+
+# export JAVA_HOME
+export JAVA_HOME=/usr/lib64/jdk11-11.0.14
+# Build
+bazel build unix/emacs:mozc_emacs_helper --config oss_linux --compilation_mode opt
+
+# Extract license part of mozc
+head -n 29 server/mozc_server.cc > LICENSE
+
+export PREFIX="$PKG/usr"
+export _bldtype
+bash ../scripts/install_server_bazel
+
+install -d "$PKG/usr/share/licenses/${PRGNAM}/"
+install -m 644 LICENSE data/installer/*.html "$PKG/usr/share/licenses/${PRGNAM}/"
+
+install -d "${PREFIX}/share/fcitx5/addon"
+install -d "${PREFIX}/share/fcitx5/inputmethod"
+install -d "${PREFIX}/lib${LIBDIRSUFFIX}/fcitx5"
+bash ../scripts/install_fcitx5_bazel
+
+# Install emacs_helper
+install -Dm644 ../LICENSE $PKG/usr/share/licenses/emacs-mozc/LICENSE
+install -Dm644 data/installer/credits_en.html  $PKG/usr/share/licenses/emacs-mozc/credits_en.html
+install -Dm755 bazel-bin/unix/emacs/mozc_emacs_helper $PKG/usr/bin/mozc_emacs_helper
+install -Dm644 unix/emacs/mozc.el $PKG/usr/share/emacs/site-lisp/mozc.el
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+
+cp $CWD/sources.url $CWD/init.el_mozc $CWD/README.emacs $PKG/usr/doc/$PRGNAM-$VERSION/
+cp $CWD/*.diff $PKG/usr/doc/$PRGNAM-$VERSION/
+cp $CWD/$PRGNAM.SlackBuild $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p $PKG/install
+# install slack-desc
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+### clean-up work directory
+echo "Clean up working directory ..."
+#for dep in abseil-cpp breakpad googletest jsoncpp gyp protobuf japanese_usage_dictionary
+#do
+#  rm -rf $CWD/$dep
+#done
+rm -rf $CWD/*.zip $CWD/*.tar.gz
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-txz}

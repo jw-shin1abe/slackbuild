@@ -1,0 +1,12 @@
+wget https://github.com/chromium/gyp/archive/caa60026e223fc501e8b337fd5086ece4028b1c6/gyp-caa60026e223fc501e8b337fd5086ece4028b1c6.zip
+wget https://github.com/fcitx/mozc/archive/0b76eb6c1b8119d5aca5e3bc953fb2be18c94f74/mozc-0b76eb6c1b8119d5aca5e3bc953fb2be18c94f74.zip
+wget https://github.com/hiroyuki-komatsu/japanese-usage-dictionary/archive/e5b3425575734c323e1d947009dd74709437b684/japanese-usage-dictionary-e5b3425575734c323e1d947009dd74709437b684.zip
+wget https://github.com/protocolbuffers/protobuf/archive/cc7b1b53234cd7a8f50d90ac3933b240dcf4cd97/protobuf-cc7b1b53234cd7a8f50d90ac3933b240dcf4cd97.zip
+wget https://github.com/abseil/abseil-cpp/archive/215105818dfde3174fe799600bb0f3cae233d0bf/abseil-cpp-215105818dfde3174fe799600bb0f3cae233d0bf.zip
+wget https://chromium.googlesource.com/breakpad/breakpad/+archive/216cea7bca53fa441a3ee0d0f5fd339a3a894224.tar.gz
+wget https://github.com/google/googletest/archive/703bd9caab50b139428cea1aaff9974ebee5742e/googletest-703bd9caab50b139428cea1aaff9974ebee5742e.zip
+wget https://github.com/open-source-parsers/jsoncpp/archive/9059f5cad030ba11d37818847443a53918c327b1/jsoncpp-9059f5cad030ba11d37818847443a53918c327b1.zip
+
+wget https://osdn.net/projects/ponsfoot-aur/storage/mozc/jigyosyo-202110.zip
+wget https://osdn.net/projects/ponsfoot-aur/storage/mozc/x-ken-all-202110.zip
+wget https://download.fcitx-im.org/fcitx-mozc/fcitx-mozc-icon.tar.gz

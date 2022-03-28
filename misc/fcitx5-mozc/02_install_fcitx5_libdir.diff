@@ -1,0 +1,11 @@
+--- a/scripts/install_fcitx5_bazel	2022-03-26 17:59:59.265593030 +0900
++++ b/scripts/install_fcitx5_bazel	2022-03-26 18:00:47.135593436 +0900
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ PREFIX="${PREFIX:-/usr}"
+ 
+-install -D -m 755 "bazel-bin/unix/fcitx5/fcitx5-mozc.so" "${PREFIX}/lib/fcitx5/fcitx5-mozc.so"
++install -D -m 755 "bazel-bin/unix/fcitx5/fcitx5-mozc.so" "${PREFIX}/lib64/fcitx5/fcitx5-mozc.so"
+ 
+ PREFIX="${PREFIX}" ../scripts/install_fcitx5_data
+ PREFIX="${PREFIX}" ../scripts/install_fcitx5_icons

@@ -1,0 +1,13 @@
+--- a/src/config.bzl	2022-03-21 13:54:26.000000000 +0900
++++ b/src/config.bzl	2022-03-26 15:14:04.384298439 +0900
+@@ -40,8 +40,8 @@
+ MACOS_MIN_OS_VER = "10.12"
+ 
+ ## Qt paths
+-QT_BASE_PATH = "/usr/include/x86_64-linux-gnu/qt5"  # For Debian
+-QT_BIN_PATH = "/usr/bin/"
++QT_BASE_PATH = "/usr/include/qt5"  # For Slackware
++QT_BIN_PATH = "/usr/lib64/qt5/bin/"
+ 
+ ## For macOS
+ ## QT_BASE_PATH should be a directory compiled with -developer_build option.
