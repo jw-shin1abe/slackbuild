@@ -29,9 +29,10 @@
 # 2021-11-22 : version 4.6.1.0 1jw -- use source 4.6.1.0_Win and sdk-3.9.6a
 # 2021-12-15 : version 4.6.2.0 1jw -- use source 4.6.2.0_Linux and sdk-3.9.6a
 # 2022-01-30 : version 4.6.3.0 1jw -- version bump to 4.6.3.0 with official 4.6.3.0_Linux source
+# 2022-03-30 : version 4.6.5.0 1jw -- version bump to 4.6.5.0 Linux
 
 PRGNAM=MEGAsync
-VERSION=${VERSION:-4.6.3.0}
+VERSION=${VERSION:-4.6.5.0}
 SDK=${SDK:-3.9.12}
 BUILD=${BUILD:-1}
 TAG=${TAG:-jw}
