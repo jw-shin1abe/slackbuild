@@ -29,8 +29,8 @@ PRGNAM=MEGAcmd
 VERSION=${VERSION:-1.5.1}
 SDK=${SDK:-3.9.11d}
 BUILD=${BUILD:-1}
-TAG=${TAG:-jw}
-PKGTYPE=${PKGTYPE:-txz}
+TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
