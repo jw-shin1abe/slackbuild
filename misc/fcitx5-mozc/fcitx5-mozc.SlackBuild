@@ -23,7 +23,7 @@
 # THE SOFTWARE.
 
 PRGNAM=fcitx5-mozc
-VERSION=${VERSION:-2.28.4750.102.1}
+VERSION=${VERSION:-2.28.4780.102.1}
 BUILD=${BUILD:-1}
 TAG=${TAG:-jw}
 
@@ -59,14 +59,15 @@ set -e
 BLDTYPE=Release
 # source rev. and version.
 ZIPCODE_REL=202110
-ABSEIL_CPP_REV=215105818dfde3174fe799600bb0f3cae233d0bf
-BREAKPAD_REV=216cea7bca53fa441a3ee0d0f5fd339a3a894224
+ABSEIL_CPP_REV=eb3db08cb3a4faf2aa09a2ba4a30b442457f36cf
+BREAKPAD_REV=c685fe1153193853cff23e83d6d2b2c577aaa5f6
 GOOGLETEST_REV=703bd9caab50b139428cea1aaff9974ebee5742e
-JSONCPP_REV=9059f5cad030ba11d37818847443a53918c327b1
-PROTOBUF_REV=cc7b1b53234cd7a8f50d90ac3933b240dcf4cd97
+JSONCPP_REV=42e892d96e47b1f6e29844cc705e148ec4856448
+PROTOBUF_REV=b5a35bcc7e4cc4ff00eb105449b300fca3a8b0d2
 GYP_REV=caa60026e223fc501e8b337fd5086ece4028b1c6
 JAPANESE_USAGE_DICT_REV=e5b3425575734c323e1d947009dd74709437b684
-MOZC_REV=552cba91b2cb6833d97c93e35acaaeb8772b0f07
+# 2.28.4750 # MOZC_REV=56582ade9a5ffd30b9c588dad6e0fe280fee1979
+MOZC_REV=47df743687b1768f209e877f4ff09a4956fc4342
 
 # Download sources
 wget https://github.com/chromium/gyp/archive/${GYP_REV}/gyp-${GYP_REV}.zip
@@ -126,7 +127,7 @@ find -L . \
 cd $BLDBASEDIR/mozc/src
 
 # disable fcitx4 target
-rm unix/fcitx/fcitx.gyp
+#rm unix/fcitx/fcitx.gyp
 
 # disable android-ndk requirement, even if we don't need it bazel will complain
 sed "/android_ndk_repository/d" -i WORKSPACE.bazel
@@ -152,7 +153,11 @@ echo "Done."
 echo "Copy third party deps ..."
 cd $BLDBASEDIR/mozc
 # fix QT_BBASE_PATH QT_BIN_PATH
-patch -p1 < $CWD/01_mozc_config.bzl_qt5.diff
+#patch -p1 < $CWD/01_mozc_config.bzl_qt5.diff
+#
+# 2022-07-07 # For Linux, Qt paths are managed by pkg_config_repository in WORKSPACE.bazel.
+# So, we don't need 01_mozc_config.bzl_qt5.diff.
+
 # fix libdir path of fcitx5-mozc.so for Slackware
 patch -p1 < $CWD/02_install_fcitx5_libdir.diff
 

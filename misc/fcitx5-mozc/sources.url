@@ -1,5 +1,7 @@
 wget https://github.com/chromium/gyp/archive/caa60026e223fc501e8b337fd5086ece4028b1c6/gyp-caa60026e223fc501e8b337fd5086ece4028b1c6.zip
-wget https://github.com/fcitx/mozc/archive/0b76eb6c1b8119d5aca5e3bc953fb2be18c94f74/mozc-0b76eb6c1b8119d5aca5e3bc953fb2be18c94f74.zip
+# wget https://github.com/fcitx/mozc/archive/0b76eb6c1b8119d5aca5e3bc953fb2be18c94f74/mozc-0b76eb6c1b8119d5aca5e3bc953fb2be18c94f74.zip
+# wget https://github.com/fcitx/mozc/archive/56582ade9a5ffd30b9c588dad6e0fe280fee1979/mozc-56582ade9a5ffd30b9c588dad6e0fe280fee1979.zip
+wget https://github.com/fcitx/mozc/archive/47df743687b1768f209e877f4ff09a4956fc4342/mozc-47df743687b1768f209e877f4ff09a4956fc4342.zip
 wget https://github.com/hiroyuki-komatsu/japanese-usage-dictionary/archive/e5b3425575734c323e1d947009dd74709437b684/japanese-usage-dictionary-e5b3425575734c323e1d947009dd74709437b684.zip
 wget https://github.com/protocolbuffers/protobuf/archive/cc7b1b53234cd7a8f50d90ac3933b240dcf4cd97/protobuf-cc7b1b53234cd7a8f50d90ac3933b240dcf4cd97.zip
 wget https://github.com/abseil/abseil-cpp/archive/215105818dfde3174fe799600bb0f3cae233d0bf/abseil-cpp-215105818dfde3174fe799600bb0f3cae233d0bf.zip
